@@ -4,6 +4,6 @@ RUN useradd -m dockeruser
 USER dockeruser
 WORKDIR /home/dockeruser
 
-COPY --chown=dockeruser . studentcodeseparator
+COPY --chown=dockeruser net.haspamelodica.studentcodeseparator studentcodeseparator
 RUN cd studentcodeseparator/streammultiplexer && mvn install
 RUN cd studentcodeseparator/common && mvn install
