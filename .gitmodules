@@ -1,0 +1,3 @@
+[submodule "studentcodeseparator/net.haspamelodica.studentcodeseparator"]
+	path = studentcodeseparator/net.haspamelodica.studentcodeseparator
+	url = https://github.com/Haspamelodica/net.haspamelodica.studentcodeseparator
