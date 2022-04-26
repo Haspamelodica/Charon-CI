@@ -1,4 +1,4 @@
-FROM ls1tum/artemis-maven-template:java17-3
+FROM maven:3-openjdk-17
 
 RUN useradd -m dockeruser
 USER dockeruser
