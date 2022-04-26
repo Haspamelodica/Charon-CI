@@ -9,9 +9,9 @@ mkfifo fifos/studToEx fifos/exToStud
 chmod a+w fifos/studToEx fifos/exToStud
 
 # Student log files
-mkdir studentLogs
-touch studentLogs/out.log studentLogs/err.log
-chmod a+w studentLogs/out.log studentLogs/err.log
+mkdir student/logs
+touch student/logs/out.log student/logs/err.log
+chmod a+w student/logs/out.log student/logs/err.log
 
 # Tests target folder incl. permissions
 mkdir exercise/tests/target

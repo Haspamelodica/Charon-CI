@@ -37,7 +37,7 @@ will be invoked with the `studentcodeseparator` system property set correctly fo
  5. Execute `setup_exercise.sh`.
      Steps 2 and 4 (and 3, if used) have to be finished for this to work.
  6. In the docker image `studentcodeseparator:student`, run `./runInDocker.sh` in the background (detached),
-    with mount points `studentLogs` to `/logs` and `fifos` to `/fifos`, both as read-write (default).
+    with mount points `student/logs` to `/logs` and `fifos` to `/fifos`, both as read-write (default).
     TODO move this to Dockerfile / a runner script.
 	 Step 5 has to be finished for this to work.
  7. In the docker image `studentcodeseparator:exercise`, run `./runInDocker.sh` in the foreground (not detached),
