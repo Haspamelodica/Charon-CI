@@ -1,8 +1,5 @@
 #!/bin/bash
 
-# TODO only debugging
-echo "Now student log files"
-
 if [ -s student/logs/out.log ]; then
 	echo '---Student side stdout log start---'
 	cat student/logs/out.log
