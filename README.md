@@ -36,12 +36,12 @@ will be invoked with the `studentcodeseparator` system property set correctly fo
      Step 3, if used, has to be finished for this to work.
  5. Execute `setup_exercise.sh`.
      Steps 2 and 4 (and 3, if used) have to be finished for this to work.
- 6. In the docker image `studentcodeseparator:student`, run `./runInDocker.sh` in the background (detached),
+ 6. Run the docker image `studentcodeseparator:student` in the background (detached),
     with mount points `student/logs` to `/logs` and `fifos` to `/fifos`, both as read-write (default).
     TODO move this to Dockerfile / a runner script.
 	 Step 5 has to be finished for this to work.
- 7. In the docker image `studentcodeseparator:exercise`, run `./runInDocker.sh` in the foreground (not detached),
-    with working directory `/data` and mount points `exercise` to `/data` and `fifos` to `/fifos`, both as read-write (default).
+ 7. Run the docker image `studentcodeseparator:exercise` in the foreground (not detached),
+    with mount points `exercise` to `/data` and `fifos` to `/fifos`, both as read-write (default).
     TODO move this to Dockerfile / a runner script.
 	 Step 5 has to be finished for this to work.
  8. Once the exercise container finishes, kill the student container.
