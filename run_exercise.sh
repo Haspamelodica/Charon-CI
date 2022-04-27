@@ -1,10 +1,7 @@
 #!/bin/bash
 
-# Exit on first error
-set -e
-
 # Setup exercise
-./setup_exercise.sh
+./setup_exercise.sh || exit $?
 
 # Run student container
 docker run \
