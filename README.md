@@ -27,35 +27,19 @@ will be invoked with the `studentcodeseparator` system property set correctly fo
   is recommended because those two artifacts are pre-cached in the exercise container.
 
 ## Recommended pipeline for testing student submissions
- 1. Clone this repo.
- 2. Execute `setup_containers.sh`.
+1. Clone this repo.
+2. Execute `setup_containers.sh`.
      Step 1 has to be finished for this to work.
- 3. (Optional) To delete all files from old student submissions and tests, execute `clean.sh`.
+3. (Optional) To delete all files from old student submissions and tests, execute `clean.sh`.
      Step 2 has to be finished for this to work.
- 4. Clone / check out exercise-specific repositories: student submission to `student/assignment`, tests to `exercise/tests`.
+4. Clone / check out exercise-specific repositories: student submission to `student/assignment`, tests to `exercise/tests`.
      Step 3, if used, has to be finished for this to work.
- 5. Execute `setup_exercise.sh`.
-     Steps 2 and 4 (and 3, if used) have to be finished for this to work.
- 6. Run the docker image `studentcodeseparator:student` in the background (detached),
-    with mount points `student/logs` to `/logs` and `fifos` to `/fifos`, both as read-write (default).
-    TODO move this to Dockerfile / a runner script.
-	 Step 5 has to be finished for this to work.
- 7. Run the docker image `studentcodeseparator:exercise` in the foreground (not detached),
-    with mount points `exercise` to `/data` and `fifos` to `/fifos`, both as read-write (default).
-    TODO move this to Dockerfile / a runner script.
-	 Step 5 has to be finished for this to work.
- 8. Once the exercise container finishes, kill the student container.
-    The tests POM file will now have been built, although files created by the build
-    (in particular, the contents of `exercise/tests/target`) will not be owned by the current user yet.
-	 Step 7 has to be finished for this to work.
- 9. Execute `./fix_exercise_ownership.sh`. This will chown build artifacts to the current user.
-	 Step 7 has to be finished for this to work.
-11. (Optional) Import any build artifacts, like test results.
-	 Step 9 has to be finished for this to work.
-10. (Optional) To make student log output appear in regular log, execute `cat_student_logfiles.sh`.
-	 Step 8 has to be finished for this to work.
-12. (Optional) To delete all files from the student submission and tests, execute `clean.sh`.
-	 Steps 8 and 9 (and 10, if used) have to be finished for this to work.
+5. Execute `run_exercise.sh`.
+     Steps 2 and 4 have to be finished for this to work.
+6. (Optional) Import any build artifacts, like test results.
+     Step 5 has to be finished for this to work.
+8. (Optional) To delete all files from the student submission and tests, execute `clean.sh`.
+     Step 5 has to be finished for this to work.
 
 ## Limitations
 - (The student submisison can not create any files outside of its Docker container.
