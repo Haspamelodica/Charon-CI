@@ -54,7 +54,7 @@ docker rm -f studentcodeseparator-student \
 }
 
 # Cat student log files so they appear in regular log.
-./cat_student_log_files.sh \
+./cat_student_logfiles.sh \
 || {
 	# Don't overwrite previous error codes from exercise container, fixing exercise ownership, and stopping student container
 	exit_code_cat=$?
