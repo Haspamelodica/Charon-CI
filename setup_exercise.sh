@@ -4,17 +4,24 @@
 set -e
 
 # Fifos for communication
-mkdir fifos
-mkfifo fifos/studToEx fifos/exToStud
-chmod a+w fifos/studToEx fifos/exToStud
+mkdir -p fifos
+(
+	cd fifos
+	rm -f     studToEx exToStud
+	mkfifo    studToEx exToStud
+	chmod a+w studToEx exToStud
+)
 
 # Student log files
-mkdir student/logs
-touch student/logs/out.log student/logs/err.log
-chmod a+w student/logs/out.log student/logs/err.log
+mkdir -p student/logs
+(
+	cd student/logs
+	touch     out.log err.log
+	chmod a+w out.log err.log
+)
 
 # Tests target folder incl. permissions
-mkdir exercise/tests/target
+mkdir -p exercise/tests/target
 chmod a+w exercise/tests/target
 
 # Student container
