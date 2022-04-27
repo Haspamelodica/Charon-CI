@@ -16,4 +16,4 @@ if [ -s student/logs/err.log ]; then
 	echo '---Student side stderr log end---' >&2
 fi
 
-# TODO switch to docker logs studentcodeseparator-student.
+docker logs studentcodeseparator-student
