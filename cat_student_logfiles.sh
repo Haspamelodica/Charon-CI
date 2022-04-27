@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# TODO only debugging
+echo "Now student log files"
+
 if [ -s student/logs/out.log ]; then
 	echo '---Student side stdout log start---'
 	cat student/logs/out.log
@@ -15,3 +18,5 @@ if [ -s student/logs/err.log ]; then
 	cat student/logs/err.log >&2
 	echo '---Student side stderr log end---' >&2
 fi
+
+# TODO switch to docker logs studentcodeseparator-student.
