@@ -4,4 +4,4 @@
 echo Just before Maven call
 export
 # TODO make this less ugly and configurable
-cd tests && mvn -Dstudentcodeseparator="-t 10000 fifo out /fifos/exToStud in /fifos/studToEx" test
+cd tests && exec mvn -Dstudentcodeseparator="-t 10000 fifo out /fifos/exToStud in /fifos/studToEx" test

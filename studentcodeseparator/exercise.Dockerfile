@@ -7,4 +7,4 @@ RUN mvn org.apache.maven.plugins:maven-dependency-plugin:3.3.0:get -Dartifact=or
 
 # This is where the exercise will be mounted to and the run script will be placed
 WORKDIR /data
-CMD ./runInDocker.sh
+CMD ./run_in_docker.sh
