@@ -2,5 +2,5 @@
 
 # TODO only debugging
 echo Just before Maven call
-export
+printenv
 exec mvn compile exec:java
