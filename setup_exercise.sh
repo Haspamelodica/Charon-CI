@@ -27,7 +27,8 @@ chmod a+w exercise/tests/target
 # Student container
 cd student
 # TODO exec doesn't seem to work here
-ls -lA
+pwd
+ls -lRA
 # sleep so stdout is flushed
 sleep 1
 ./build_container.sh
