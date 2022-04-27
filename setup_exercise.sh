@@ -12,14 +12,6 @@ mkdir -p fifos
 	chmod a+w studToEx exToStud
 )
 
-# Student log files
-mkdir -p student/logs
-(
-	cd student/logs
-	touch     out.log err.log
-	chmod a+w out.log err.log
-)
-
 # Tests target folder incl. permissions
 mkdir -p exercise/tests/target
 chmod a+w exercise/tests/target

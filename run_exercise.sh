@@ -5,7 +5,6 @@
 
 # Run student container
 docker run \
-		--volume $(readlink -f student/logs):/logs \
 		--volume $(readlink -f fifos):/fifos \
 		--detach \
 		--name studentcodeseparator-student \

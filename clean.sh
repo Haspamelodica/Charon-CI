@@ -4,4 +4,4 @@
 # but in case something failed it helps to fix ownership again.
 ./fix_exercise_ownership.sh
 
-rm -rf student/assignment student/logs exercise/tests fifos
+rm -rf student/assignment exercise/tests fifos
