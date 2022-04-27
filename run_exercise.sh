@@ -42,13 +42,11 @@ docker run \
 	echo "Fixing exercise ownership failed with $exit_code" >&2
 }
 
-# Kill student container. Don't remove it yet; first cat logs.
-docker kill studentcodeseparator-student \
-|| {
-	# Overwrite previous error codes
-	exit_code=$?
-	echo "Killing student container failed with $exit_code. This means it might still be running!" >&2
-}
+# Stop student container. Don't remove it yet; first cat logs.
+# Also, ignore any errors and pipe stderr to /dev/null:
+# docker stop fails if the container shut down by itself,
+# and we remove the container later on either way.
+docker stop studentcodeseparator-student 2>/dev/null
 
 # Cat student log files so they appear in regular log.
 ./cat_student_logs.sh \
