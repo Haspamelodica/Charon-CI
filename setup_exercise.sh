@@ -27,4 +27,5 @@ chmod a+w exercise/tests/target
 # Student container
 cd student
 # TODO exec doesn't seem to work here
+ls -lA
 ./build_container.sh
