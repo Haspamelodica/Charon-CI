@@ -42,21 +42,29 @@ docker run \
 	echo "Fixing exercise ownership failed with $exit_code" >&2
 }
 
-# Kill and remove student container
-docker rm -f studentcodeseparator-student \
+# Kill student container. Don't remove it yet; first cat logs.
+docker kill studentcodeseparator-student \
 || {
-	# Overwrite previous error codes from exercise container and fixing exercise ownership
+	# Overwrite previous error codes
 	exit_code=$?
-	echo "Removing student container failed with $exit_code. This means it might still be running!" >&2
+	echo "Killing student container failed with $exit_code. This means it might still be running!" >&2
 }
 
 # Cat student log files so they appear in regular log.
-./cat_student_logfiles.sh \
+./cat_student_logs.sh \
 || {
-	# Don't overwrite previous error codes from exercise container, fixing exercise ownership, and stopping student container
+	# Don't overwrite previous error codes
 	exit_code_cat=$?
 	if [ "$exit_code" == "0" ]; then exit_code=$exit_code_cat; fi
 	echo "Cat student log files failed with $exit_code_cat" >&2
+}
+
+# Remove student container
+docker rm -f studentcodeseparator-student \
+|| {
+	# Overwrite previous error codes
+	exit_code=$?
+	echo "Removing student container failed with $exit_code. This means it might still be running!" >&2
 }
 
 exit $exit_code
