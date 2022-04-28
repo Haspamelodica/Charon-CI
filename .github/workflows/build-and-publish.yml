@@ -30,6 +30,6 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: studentcodeseparator
-          file: base.Dockerfile
+          file: studentcodeseparator/base.Dockerfile
           tags: ${{ github.actor }}/studentcodeseparator:testing
           push: true
