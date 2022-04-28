@@ -36,5 +36,5 @@ jobs:
         with:
           context: studentcodeseparator
           file: studentcodeseparator/base.Dockerfile
-          tags: ghcr.io/Haspamelodica/studentcodeseparator:testing
+          tags: ghcr.io/haspamelodica/studentcodeseparator:testing
           push: true
