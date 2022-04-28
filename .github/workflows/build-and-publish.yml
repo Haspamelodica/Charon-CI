@@ -31,10 +31,13 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
       -
+         name: Make repository name lowercase
+         run: echo ::set-env name=IMAGE_REPOSITORY::$(echo ${{ github.repository }} | tr '[:upper:]' '[:lower:]')
+      -
         name: Build and push
         uses: docker/build-push-action@v2
         with:
           context: studentcodeseparator
           file: studentcodeseparator/base.Dockerfile
-          tags: ghcr.io/haspamelodica/studentcodeseparator:testing
+          tags: ghcr.io/${{ env.IMAGE_REPOSITORY }}:testing
           push: true
