@@ -11,6 +11,7 @@ RUN mvn org.apache.maven.plugins:maven-dependency-plugin:3.3.0:get -Dartifact=or
 RUN mvn org.apache.maven.plugins:maven-dependency-plugin:3.3.0:get -Dartifact=org.apache.maven.surefire:surefire-junit-platform:3.0.0-M6
 RUN mvn org.apache.maven.plugins:maven-dependency-plugin:3.3.0:get -Dartifact=org.mockito:mockito-core:2.28.2
 RUN mvn org.apache.maven.plugins:maven-dependency-plugin:3.3.0:get -Dartifact=org.powermock:powermock-reflect:2.0.9
+RUN mvn org.apache.maven.plugins:maven-dependency-plugin:3.3.0:get -Dartifact=junit:junit:4.13.2
 
 # This is where the exercise will be mounted to and the run script will be placed
 WORKDIR /data
