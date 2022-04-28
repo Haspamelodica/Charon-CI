@@ -33,5 +33,5 @@ jobs:
         with:
           context: studentcodeseparator
           file: studentcodeseparator/base.Dockerfile
-          tags: ${{ github.actor }}/studentcodeseparator:testing
+          tags: studentcodeseparator:testing
           push: true
