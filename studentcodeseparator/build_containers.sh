@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Exit on first error
+set -e
+
 # The base container Dockerfile copies source files. So it needs access to the build context.
 docker build -t studentcodeseparator:base -f base.Dockerfile .
 
