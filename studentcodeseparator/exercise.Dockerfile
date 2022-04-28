@@ -14,7 +14,8 @@ RUN mvn org.apache.maven.plugins:maven-dependency-plugin:3.3.0:get -Dartifact=or
 RUN mvn org.apache.maven.plugins:maven-dependency-plugin:3.3.0:get -Dartifact=junit:junit:4.13.2
 RUN mvn org.apache.maven.plugins:maven-dependency-plugin:3.3.0:get -Dartifact=org.hamcrest:hamcrest-library:1.3
 RUN mvn org.apache.maven.plugins:maven-dependency-plugin:3.3.0:get -Dartifact=org.assertj:assertj-core:3.22.0
-# RUN mvn org.apache.maven.plugins:maven-dependency-plugin:3.3.0:get -Dartifact=org.junit:junit-bom:5.8.0
+RUN mvn org.apache.maven.plugins:maven-dependency-plugin:3.3.0:get -Dartifact=org.junit:junit-bom:5.8.0:pom
+RUN mvn org.apache.maven.plugins:maven-dependency-plugin:3.3.0:get -Dartifact=org/junit/platform/junit-platform-launcher/1.8.2
 
 # This is where the exercise will be mounted to and the run script will be placed
 WORKDIR /data
