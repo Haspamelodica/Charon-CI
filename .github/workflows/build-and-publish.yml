@@ -16,12 +16,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       -
-        name: Checkout
+        name: "Checkout"
         uses: actions/checkout@v3
         with:
           submodules: recursive
       -
-        name: Set up Docker Buildx
+        name: "Set up Docker Buildx"
         uses: docker/setup-buildx-action@v1
       -
         name: Log into registry ${{ env.REGISTRY }}
@@ -31,14 +31,30 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
       -
-         name: Make repository name lowercase
-         run: |
-           echo IMAGE_REPOSITORY=$(echo ${{ github.repository }} | tr '[:upper:]' '[:lower:]') >> $GITHUB_ENV
+        name: "Make repository name lowercase"
+        run: |
+          echo IMAGE_REPOSITORY=$(echo ${{ github.repository }} | tr '[:upper:]' '[:lower:]') >> $GITHUB_ENV
       -
-        name: Build and push
+        name: "Build and push: base"
         uses: docker/build-push-action@v2
         with:
           context: studentcodeseparator
           file: studentcodeseparator/base.Dockerfile
-          tags: ghcr.io/${{ env.IMAGE_REPOSITORY }}:testing
+          tags: ghcr.io/${{ env.IMAGE_REPOSITORY }}:base
+          push: true
+      -
+        name: "Build and push: student-base"
+        uses: docker/build-push-action@v2
+        with:
+          context: studentcodeseparator
+          file: studentcodeseparator/student-base.Dockerfile
+          tags: ghcr.io/${{ env.IMAGE_REPOSITORY }}:student-base
+          push: true
+      -
+        name: "Build and push: exercise"
+        uses: docker/build-push-action@v2
+        with:
+          context: studentcodeseparator
+          file: studentcodeseparator/exercise.Dockerfile
+          tags: ghcr.io/${{ env.IMAGE_REPOSITORY }}:exercise
           push: true
