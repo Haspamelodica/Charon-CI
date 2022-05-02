@@ -27,16 +27,16 @@ will be invoked with the `studentcodeseparator` system property set correctly fo
   is recommended because those two artifacts are pre-cached in the exercise container.
 
 ## Recommended pipeline for testing student submissions
-1. Clone this repo.
+1. Clone / check out this repository.
 2. (Optional) To pull all required docker containers, execute `pull_containers.sh`.
    This can be used to avoid warnings from Docker about automatically pulling when containers are run.
      Step 1 has to be finished for this to work.
 3. (Optional) To delete all files from old student submissions and tests, execute `clean.sh`.
-     Step 1 has to be finished for this to work.
+     Step 1 (and step 2, if used) has to be finished for this to work.
 4. Clone / check out exercise-specific repositories: student submission to `student/assignment`, tests to `exercise/tests`.
      Step 3, if used, has to be finished for this to work.
 5. Execute `run_exercise.sh`.
-     Step 4 has to be finished for this to work.
+     Steps 1 and 4 have to be finished for this to work.
 6. (Optional) Import any build artifacts, like test results.
      Step 5 has to be finished for this to work.
 7. (Optional) To delete all files from the student submission and tests, execute `clean.sh`.
