@@ -27,7 +27,7 @@ docker run \
 		--volume $(readlink -f exercise):/data \
 		--volume $(readlink -f fifos):/fifos \
 		--rm \
-		studentcodeseparator:exercise \
+		ghcr.io/haspamelodica/studentcodeseparator-for-ci:exercise \
 || {
 	exit_code=$?
 	echo "Exercise container failed with $exit_code" >&2
