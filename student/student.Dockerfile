@@ -1,2 +1,2 @@
-FROM studentcodeseparator:student-base
+FROM ghcr.io/haspamelodica/studentcodeseparator-for-ci:student-base
 COPY . .

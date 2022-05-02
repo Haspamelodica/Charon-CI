@@ -1,4 +1,4 @@
-FROM studentcodeseparator:base
+FROM ghcr.io/haspamelodica/studentcodeseparator-for-ci:base
 RUN cd studentcodeseparator/exercise && mvn install
 
 # Not strictly neccessary because exercise side has internet connection, but speeds up tests.
