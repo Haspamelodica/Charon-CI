@@ -12,7 +12,7 @@ which is to prevent accidental security bugs.
 When used with the recommended pipeline, the `test` goal of a POM file in the tests repository
 will be invoked with the `studentcodeseparator` system property set correctly for communicating with the student side.
 
-It uses Docker containers built by https://github.com/Haspamelodica/studentcodeseparator-for-ci-images.
+It uses Docker images built by https://github.com/Haspamelodica/studentcodeseparator-for-ci-images.
 
 ## Requirements
 
