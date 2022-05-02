@@ -10,7 +10,8 @@ Additionally, no files from the student submission repository will be (directly)
 which is to prevent accidental security bugs.
 
 When used with the recommended pipeline, the `test` goal of a POM file in the tests repository
-will be invoked with the `studentcodeseparator` system property set correctly for communicating with the student side.
+will be invoked with the `net.haspamelodica.studentcodeseparator.communicationargs` system property
+set correctly for communicating with the student side via the StudentCodeSeparator JUnit 5 extension.
 
 It uses Docker images built by https://github.com/Haspamelodica/studentcodeseparator-for-ci-images.
 
