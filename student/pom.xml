@@ -12,7 +12,7 @@
 	</properties>
 	<dependencies>
 		<dependency>
-			<groupId>net.haspamelodica.studentcodeseparator</groupId>
+			<groupId>net.haspamelodica.charon</groupId>
 			<artifactId>student</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
@@ -33,7 +33,7 @@
 				<artifactId>exec-maven-plugin</artifactId>
 				<version>3.0.0</version>
 				<configuration>
-					<mainClass>net.haspamelodica.studentcodeseparator.StudentSideRunner</mainClass>
+					<mainClass>net.haspamelodica.charon.StudentSideRunner</mainClass>
 					<!-- No timeout: The test may take a long time to initialize.
 					Also, the environment must be able to kill the student container
 					even if the test side never connects and the student container freezes,

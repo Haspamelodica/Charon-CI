@@ -1,5 +1,5 @@
-# StudentCodeSeparator for CI
-This repository makes using the StudentCodeSeparator easier for CI systems.
+# Charon for CI
+This repository makes using [Charon](https://github.com/Haspamelodica/Charon) easier for CI systems.
 
 It requires two repositories to be cloned into subfolders by the CI system;
 the "student submission" repository containing all files submitted by the student,
@@ -10,10 +10,10 @@ Additionally, no files from the student submission repository will be (directly)
 which is to prevent accidental security bugs.
 
 When used with the recommended pipeline, the `test` goal of a POM file in the tests repository
-will be invoked with the `net.haspamelodica.studentcodeseparator.communicationargs` system property
-set correctly for communicating with the student side via the StudentCodeSeparator JUnit 5 extension.
+will be invoked with the `net.haspamelodica.charon.communicationargs` system property
+set correctly for communicating with the student side via the Charon JUnit 5 extension.
 
-It uses Docker images built by https://github.com/Haspamelodica/studentcodeseparator-for-ci-images.
+It uses Docker images built by https://github.com/Haspamelodica/Charon-CI-Images.
 
 ## Requirements
 

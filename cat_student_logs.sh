@@ -4,7 +4,7 @@ echo "---Student side log start---"
 # Make sure stdout has been flushed. Avoids reordering stderr output before the start message.
 sleep 1
 
-docker logs studentcodeseparator-student
+docker logs charon-student
 
 # Make sure stderr has been flushed. Avoids reordering stderr output after the end message.
 sleep 1

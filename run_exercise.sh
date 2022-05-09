@@ -7,14 +7,14 @@
 docker run \
 		--volume $(readlink -f fifos):/fifos \
 		--detach \
-		--name studentcodeseparator-student \
-		studentcodeseparator:student \
+		--name charon-student \
+		charon:student \
 || {
 	student_exit_code=$?
 	echo "Starting student container failed with $student_exit_code"
 
 	# Still try to stop it in case it was started even if docker run reported an error. Probably fails, so ignore errors there.
-	docker rm -f studentcodeseparator-student || (echo "Removing student container failed with $?; it probably wasn't started at all." >&2)
+	docker rm -f charon-student || (echo "Removing student container failed with $?; it probably wasn't started at all." >&2)
 
 	# Don't try to continue
 	exit $student_exit_code
@@ -27,7 +27,7 @@ docker run \
 		--volume $(readlink -f exercise):/data \
 		--volume $(readlink -f fifos):/fifos \
 		--rm \
-		ghcr.io/haspamelodica/studentcodeseparator:exercise \
+		ghcr.io/haspamelodica/charon:exercise \
 || {
 	exit_code=$?
 	echo "Exercise container failed with $exit_code" >&2
@@ -45,7 +45,7 @@ docker run \
 # Also, ignore any errors and pipe stderr to /dev/null:
 # docker stop fails if the container shut down by itself,
 # and we remove the container later on either way.
-docker stop studentcodeseparator-student 2>/dev/null
+docker stop charon-student 2>/dev/null
 
 # Cat student log files so they appear in regular log.
 ./cat_student_logs.sh \
@@ -57,7 +57,7 @@ docker stop studentcodeseparator-student 2>/dev/null
 }
 
 # Remove student container
-docker rm -f studentcodeseparator-student \
+docker rm -f charon-student \
 || {
 	# Overwrite previous error codes
 	exit_code=$?
