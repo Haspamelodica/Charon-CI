@@ -22,6 +22,7 @@ It uses Docker images built by https://github.com/Haspamelodica/Charon-CI-Images
 
 ### Student submissions repository
 - All sources must be in one folder called `src` at repository root.
+- Student code must not have any dependencies.
 
 ### Tests repository
 - There must be a POM file at the repository root.
@@ -48,6 +49,7 @@ It uses Docker images built by https://github.com/Haspamelodica/Charon-CI-Images
 ## Limitations
 - (The student submisison can not create any files outside of its Docker container.
   This is intentional and as designed.)
+- Currently, the POM file used to compile and run student code is fixed. This will likely be changed in the future.
 - Build artifacts created by the tests POM file will only be visible to the outside of the container
   if they are created in `/data` (or subdirectories).
   The POM file will be invoked in `/data/tests` in the Docker container.
