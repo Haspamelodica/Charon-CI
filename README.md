@@ -27,7 +27,7 @@ It uses Docker images built by https://github.com/Haspamelodica/Charon-CI-Images
 ### Tests repository
 - There must be a POM file at the repository root.
   This POM file may use any Maven plugins and dependencies, but using
-  `org.apache.maven.plugins:maven-surefire-plugin:3.0.0-M6` and `org.junit.jupiter:junit-jupiter-engine:5.8.2`
+  `org.apache.maven.plugins:maven-surefire-plugin:3.0.0` and `org.junit.jupiter:junit-jupiter-engine:5.8.2`
   is recommended because those two artifacts are pre-cached in the exercise container.
 
 ## Recommended pipeline for testing student submissions
