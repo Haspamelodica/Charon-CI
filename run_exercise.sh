@@ -7,6 +7,7 @@
 student_container_name=$(docker run \
 		--volume $(readlink -f fifos):/fifos \
 		--detach \
+		$ADDITIONAL_DOCKER_ARGS_STUDENT \
 		charon:student) \
 || {
 	student_exit_code=$?
@@ -26,6 +27,7 @@ docker run \
 		--volume $(readlink -f exercise):/data \
 		--volume $(readlink -f fifos):/fifos \
 		--rm \
+		$ADDITIONAL_DOCKER_ARGS_EXERCISE \
 		ghcr.io/haspamelodica/charon:exercise \
 || {
 	exit_code=$?
