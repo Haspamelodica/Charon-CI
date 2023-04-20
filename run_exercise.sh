@@ -60,7 +60,7 @@ docker stop "$student_container_name" 2>/dev/null
 # Remove student container
 docker rm -f "$student_container_name" \
 || {
-	# Overwrite previous error codes
+	# Overwrite previous error codes; this is very bad!
 	exit_code=$?
 	echo "Removing student container failed with $exit_code. This means it might still be running!" >&2
 	# Echo student container name in case somebody wants to cleanup "by hand"
