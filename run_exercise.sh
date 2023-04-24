@@ -1,14 +1,14 @@
 #!/bin/bash
 
 # Setup exercise
-./setup_exercise.sh || exit $?
+student_image_name=$(./setup_exercise_echo_student_image_id.sh) || exit $?
 
 # Run student container
 student_container_name=$(docker run \
 		--volume $(readlink -f fifos):/fifos \
 		--detach \
 		$ADDITIONAL_DOCKER_ARGS_STUDENT \
-		charon:student) \
+		$student_image_name) \
 || {
 	student_exit_code=$?
 	echo "Starting student container failed with $student_exit_code"
