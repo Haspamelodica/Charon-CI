@@ -8,5 +8,5 @@ exec docker run \
 		--user 0 \
 		--volume $(readlink -f $1):/data \
 		--rm \
-		ghcr.io/haspamelodica/charon:exercise \
+		ghcr.io/haspamelodica/charon:student-base \
 		chown -R $HOST_UID:$HOST_GID /data
