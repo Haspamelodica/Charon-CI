@@ -17,6 +17,7 @@ student_image_name=$(./setup_exercise_echo_student_image_id.sh) || exit $?
 # Run student container
 student_container_name=$(docker run \
 		--volume $(readlink -f fifos):/fifos \
+		--network none \
 		--detach \
 		$ADDITIONAL_DOCKER_ARGS_STUDENT \
 		$student_image_name) \
