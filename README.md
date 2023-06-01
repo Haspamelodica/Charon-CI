@@ -9,11 +9,12 @@ No files from the tests repository will be (directly) visible to student code.
 Additionally, no files from the student submission repository will be (directly) visible to test code by default,
 which is to prevent accidental security bugs.
 
-When used with the recommended pipeline, the `test` goal of a POM file in the tests repository
-will be invoked with the `net.haspamelodica.charon.communicationargs` system property
+When used with the recommended pipeline, a Maven or Gradle build will be invoked
+in the tests repository for the `test` goal
+with the `net.haspamelodica.charon.communicationargs` system property
 set correctly for communicating with the student side via the Charon JUnit 5 extension.
 
-It uses Docker images built by https://github.com/Haspamelodica/Charon-CI-Images.
+Charon-CI uses Docker images built by https://github.com/Haspamelodica/Charon-CI-Images.
 
 ## Requirements
 
@@ -25,10 +26,10 @@ It uses Docker images built by https://github.com/Haspamelodica/Charon-CI-Images
 - Student code must not have any dependencies.
 
 ### Tests repository
-- There must be a POM file at the repository root.
-  This POM file may use any Maven plugins and dependencies, but using
+- There must be a POM file (for Maven-based tests) or Gradle build files (for Gradle-based tests) at the repository root.
+  The tests repository may use any dependencies and plugins, but using
   `org.apache.maven.plugins:maven-surefire-plugin:3.0.0` and `org.junit.jupiter:junit-jupiter-engine:5.8.2`
-  is recommended because those two artifacts are pre-cached in the exercise container.
+  is recommended because those two artifacts and all their dependencies are cached in the exercise container.
 
 ## Recommended pipeline for testing student submissions
 1. Clone / check out this repository.
@@ -39,7 +40,7 @@ It uses Docker images built by https://github.com/Haspamelodica/Charon-CI-Images
      Step 1 (and step 2, if used) has to be finished for this to work.
 4. Clone / check out exercise-specific repositories: student submission to `student/assignment`, tests to `exercise/tests`.
      Step 3, if used, has to be finished for this to work.
-5. Execute `run_exercise.sh`.
+5. Execute `run_exercise.sh` for Maven-based tests, or `run_exercise_gradle.sh` for Gradle-based tests.
      Steps 1 and 4 have to be finished for this to work.
 6. (Optional) Import any build artifacts, like test results.
      Step 5 has to be finished for this to work.
@@ -53,10 +54,10 @@ It uses Docker images built by https://github.com/Haspamelodica/Charon-CI-Images
 ## Limitations
 - (The student submisison can not create any files outside of its Docker container.
   This is intentional and as designed.)
-- Currently, the POM file used to compile and run student code is fixed. This will likely be changed in the future.
-- Build artifacts created by the tests POM file will only be visible to the outside of the container
+- Currently, the student side is always invoked using Maven with a fixed POM file. This will likely be changed in the future.
+- Build artifacts created by the tests will only be visible to the outside of the container
   if they are created in `/data` (or subdirectories).
   The POM file will be invoked in `/data/tests` in the Docker container.
   This implies all results from the `target` folder will be visible to the outside.
-- The exercise build can't modify or delete any existing files in the `exercise` folder,
+- The exercise build can't assume to be able to modify or delete any existing files in the `exercise` folder,
   which includes all files in the tests repository.
