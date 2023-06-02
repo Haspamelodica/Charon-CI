@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# "Parse" mode argument
+mode="$1"
+
 # Exit on first error
 set -e >/dev/null
 
@@ -13,8 +16,18 @@ mkdir -p fifos >/dev/null
 )
 
 # Tests target folder incl. permissions
-mkdir -p exercise/tests/target >/dev/null
-chmod a+w exercise/tests/target >/dev/null
+if [ "$mode" == "maven" ]; then
+	mkdir -p  exercise/tests/target >/dev/null
+	chmod a+w exercise/tests/target >/dev/null
+elif [ "$mode" == "gradle" ]; then
+	mkdir -p  exercise/tests/.gradle >/dev/null
+	chmod a+w exercise/tests/.gradle >/dev/null
+	mkdir -p  exercise/tests/build >/dev/null
+	chmod a+w exercise/tests/build >/dev/null
+else
+	echo "Unknown mode: $mode"
+	exit 1
+fi
 
 # Student container
 cd student >/dev/null

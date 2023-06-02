@@ -12,7 +12,7 @@ else
 fi
 
 # Setup exercise
-student_image_name=$(./setup_exercise_echo_student_image_id.sh) || exit $?
+student_image_name=$(./setup_exercise_echo_student_image_id.sh "$mode") || exit $?
 
 # Run student container
 student_container_name=$(docker run \
