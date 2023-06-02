@@ -36,11 +36,7 @@
 				<version>3.0.0</version>
 				<configuration>
 					<mainClass>net.haspamelodica.charon.StudentSideRunner</mainClass>
-					<!-- No timeout: The test may take a long time to initialize.
-					Also, the environment must be able to kill the student container
-					even if the test side never connects and the student container freezes,
-					because a student could mimick this maliciously. -->
-					<commandlineArgs>fifo in /fifos/exToStud out /fifos/studToEx</commandlineArgs>
+					<commandlineArgs>${net.haspamelodica.charon.communicationargs}</commandlineArgs>
 				</configuration>
 			</plugin>
 		</plugins>
