@@ -16,14 +16,16 @@ mkdir -p fifos >/dev/null
 )
 
 # Tests target folder incl. permissions
+#TODO maybe just chown? We have to fix owner afterwards anyway,
+# and when chowning we don't break permissions if they are meaningful
 if [ "$mode" == "maven" ]; then
-	mkdir -p  exercise/tests/target >/dev/null
-	chmod a+w exercise/tests/target >/dev/null
+	mkdir -p     exercise/tests/target >/dev/null
+	chmod -R a+w exercise/tests/target >/dev/null
 elif [ "$mode" == "gradle" ]; then
-	mkdir -p  exercise/tests/.gradle >/dev/null
-	chmod a+w exercise/tests/.gradle >/dev/null
-	mkdir -p  exercise/tests/build >/dev/null
-	chmod a+w exercise/tests/build >/dev/null
+	mkdir -R -p  exercise/tests/.gradle >/dev/null
+	chmod a+w    exercise/tests/.gradle >/dev/null
+	mkdir -R -p  exercise/tests/build >/dev/null
+	chmod a+w    exercise/tests/build >/dev/null
 else
 	echo "Unknown mode: $mode"
 	exit 1
