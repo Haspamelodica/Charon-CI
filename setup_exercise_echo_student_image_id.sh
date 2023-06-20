@@ -22,10 +22,10 @@ if [ "$mode" == "maven" ]; then
 	mkdir -p     exercise/tests/target >/dev/null
 	chmod -R a+w exercise/tests/target >/dev/null
 elif [ "$mode" == "gradle" ]; then
-	mkdir -R -p  exercise/tests/.gradle >/dev/null
-	chmod a+w    exercise/tests/.gradle >/dev/null
-	mkdir -R -p  exercise/tests/build >/dev/null
-	chmod a+w    exercise/tests/build >/dev/null
+	mkdir -p     exercise/tests/.gradle >/dev/null
+	chmod -R a+w exercise/tests/.gradle >/dev/null
+	mkdir -p     exercise/tests/build >/dev/null
+	chmod -R a+w exercise/tests/build >/dev/null
 else
 	echo "Unknown mode: $mode"
 	exit 1
