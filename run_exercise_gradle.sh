@@ -1,3 +1,3 @@
 #!/bin/bash
 
-exec ./run_exercise_generic.sh gradle
+exec ./run_exercise.sh gradle

@@ -1,6 +1,0 @@
-# Ignore .git folder(s): those aren't needed to compile checked out sources
-.git
-
-# Ignore .dockerignore and Dockerfile: not needed in Docker container
-.dockerignore
-student.Dockerfile

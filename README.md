@@ -40,7 +40,7 @@ Charon-CI uses Docker images built by https://github.com/Haspamelodica/Charon-CI
      Step 1 (and step 2, if used) has to be finished for this to work.
 4. Clone / check out exercise-specific repositories: student submission to `student/assignment`, tests to `exercise/tests`.
      Step 3, if used, has to be finished for this to work.
-5. Execute `run_exercise.sh` for Maven-based tests, or `run_exercise_gradle.sh` for Gradle-based tests.
+5. Execute `run_exercise_maven.sh` for Maven-based tests, or `run_exercise_gradle.sh` for Gradle-based tests.
      Steps 1 and 4 have to be finished for this to work.
 6. (Optional) Import any build artifacts, like test results.
      Step 5 has to be finished for this to work.
@@ -58,6 +58,7 @@ Charon-CI uses Docker images built by https://github.com/Haspamelodica/Charon-CI
 - Build artifacts created by the tests will only be visible to the outside of the container
   if they are created in `/data` (or subdirectories).
   The POM file will be invoked in `/data/tests` in the Docker container.
-  This implies all results from the `target` folder will be visible to the outside.
+  This implies all build artifacts from the `target` folder for Maven, or the `build` folder for Gradle, will be visible to the outside.
 - The exercise build can't assume to be able to modify or delete any existing files in the `exercise` folder,
-  which includes all files in the tests repository.
+  which includes all files in the tests repository,
+  except for those under `target` for Maven, or under `build` or `.gradle` for Gradle.
