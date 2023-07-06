@@ -1,4 +1,5 @@
 #!/bin/bash
 
-docker pull ghcr.io/haspamelodica/charon:exercise
-docker pull ghcr.io/haspamelodica/charon:student-base
+docker pull ghcr.io/haspamelodica/charon:student
+docker pull ghcr.io/haspamelodica/charon:exercise-maven
+docker pull ghcr.io/haspamelodica/charon:exercise-gradle

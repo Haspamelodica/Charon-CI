@@ -76,7 +76,7 @@ student_container_name=$(logging_err_only "STUD START" docker run \
 		--volume $(readlink -f fifos):/fifos \
 		--network none \
 		$ADDITIONAL_DOCKER_ARGS_STUDENT \
-		ghcr.io/haspamelodica/charon:student-base \
+		ghcr.io/haspamelodica/charon:student \
 		bash -c 'while true; do sleep 10; done') \
 || {
 	exit_code=$?
