@@ -24,7 +24,7 @@ exercise_run_command="./run_$mode.sh"
 
 # Setup logging and cleanup utilities
 prepend_log_exec() {
-	exec sed "s/^/$1/"
+	exec sed -u "s/^/$1/"
 }
 
 logging_prefix_size=12
