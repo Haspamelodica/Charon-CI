@@ -22,6 +22,20 @@ exercise_image="exercise-$mode"
 exercise_compile_command="./compile_$mode.sh"
 exercise_run_command="./run_$mode.sh"
 
+if [ "$TIMEOUT" != "" ]; then
+	_timeout() {
+		timeout -vk "$TIMEOUT" "$TIMEOUT" "$@"
+	}
+else
+	_timeout() {
+		"$@"
+	}
+fi
+
+docker_with_timeout() {
+	_timeout docker "$@"
+}
+
 # Setup logging and cleanup utilities
 prepend_log_exec() {
 	exec sed -u "s/^/$1/"
@@ -106,11 +120,11 @@ cleanup() {
 
 # Copy over student-side files
 # Note: The dot following the source is important; see the documentation of docker cp.
-logging "STUD COPY" docker cp student/. "$student_container_name":/data/ \
+logging "STUD COPY" docker_with_timeout cp student/. "$student_container_name":/data/ \
 || error_and_exit $? "Copying student files failed with $?"
 
 # Start compiling student side
-logging "STUD COMPILE" docker exec "$student_container_name" ./compile.sh &
+logging "STUD COMPILE" docker_with_timeout exec "$student_container_name" ./compile.sh &
 student_compile_pid=$!
 
 # Setup exercise
@@ -168,7 +182,7 @@ cleanup() {
 }
 
 # Compile the exercise side
-logging "EXER COMPILE" docker exec \
+logging "EXER COMPILE" docker_with_timeout exec \
 		"$exercise_container_name" \
 		$exercise_compile_command \
 || error_and_exit $? "Compiling exercise side failed with $?"
@@ -177,14 +191,16 @@ logging "EXER COMPILE" docker exec \
 wait $student_compile_pid \
 || error_and_exit $? "Compiling student side failed with $?"
 
+# No timeout neccessary; we kill the student later either way
 logging "STUD RUN" docker exec \
 		"$student_container_name" \
 		./run.sh &
+# No need to save PID; we don't want to wait for the student side anyway.
 
 exit_code_exercise=0
 # Run exercise container
-# Don't exit on error; erroring is normal, it happens if the student doesn't pass all tests.
-logging "EXER RUN" docker exec \
+# Erroring here is normal, it happens if the student doesn't pass all tests.
+logging "EXER RUN" docker_with_timeout exec \
 		"$exercise_container_name" \
 		$exercise_run_command \
 || error_and_exit $? "Exercise container finished with $?"

@@ -50,6 +50,7 @@ Charon-CI uses Docker images built by https://github.com/Haspamelodica/Charon-CI
 ## Configuring
 - You can specify additional arguments for Docker using the environment variables
   `$ADDITIONAL_DOCKER_ARGS_STUDENT` and `$ADDITIONAL_DOCKER_ARGS_EXERCISE`.
+- You can give a timeout using `$TIMEOUT`.
 
 ## Limitations
 - (The student submisison can not create any files outside of its Docker container.
