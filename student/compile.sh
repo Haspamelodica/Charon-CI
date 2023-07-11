@@ -1,3 +1,3 @@
 #!/bin/bash
 
-exec mvn compile
+exec mvn test-compile

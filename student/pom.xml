@@ -19,6 +19,7 @@
 	</dependencies>
 	<build>
         <sourceDirectory>${project.basedir}/assignment/src</sourceDirectory>
+        <testSourceDirectory>${project.basedir}/src_from_exercise</testSourceDirectory>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -35,6 +36,7 @@
 				<artifactId>exec-maven-plugin</artifactId>
 				<version>3.0.0</version>
 				<configuration>
+					<classpathScope>test</classpathScope>
 					<mainClass>net.haspamelodica.charon.StudentSideRunner</mainClass>
 					<commandlineArgs>${net.haspamelodica.charon.communicationargs}</commandlineArgs>
 				</configuration>

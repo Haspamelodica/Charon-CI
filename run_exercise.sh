@@ -22,6 +22,7 @@ exercise_image="exercise-$mode"
 exercise_compile_command="./compile_$mode.sh"
 exercise_run_command="./run_$mode.sh"
 
+# Setup timeout utilities
 if [ "$TIMEOUT" != "" ]; then
 	_timeout() {
 		timeout -vk "$TIMEOUT" "$TIMEOUT" "$@"
@@ -36,7 +37,7 @@ docker_with_timeout() {
 	_timeout docker "$@"
 }
 
-# Setup logging and cleanup utilities
+# Setup logging utilities
 prepend_log_exec() {
 	exec sed -u "s/^/$1/"
 }
@@ -62,6 +63,14 @@ error() {
 	logging "META" echo "$@" >&2
 }
 
+error_and_exit() {
+	exit_code=$1
+	shift
+	error "$@"
+	exit $exit_code
+}
+
+# Setup cleanup utilities
 cleanup() {
 	: # nothing to do for now; will get redefined later
 }
@@ -73,14 +82,7 @@ cleanup_trap() {
 
 trap cleanup_trap EXIT
 
-error_and_exit() {
-	exit_code=$1
-	shift
-	error "$@"
-	exit $exit_code
-}
-
-# Setup common
+# Setup common. This will also parse STUDENT_SIDE_SOURCES, if set.
 logging "META" ./setup_common.sh \
 || error_and_exit $? "Setting up failed with $?"
 
