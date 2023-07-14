@@ -7,9 +7,11 @@ set -e
 mkdir -p fifos
 (
 	cd fifos
-	rm -f     studToEx exToStud
-	mkfifo    studToEx exToStud
-	chmod a+w studToEx exToStud
+	rm -f     control
+	mkfifo    control
+	chmod a+w control
+	# This is neccessary so the Docker containers can create their own fifos
+	chmod a+w .
 )
 
 if [ "$STUDENT_SIDE_SOURCES" != "" ]; then
