@@ -175,7 +175,7 @@ if [ "$TIMEOUT" != "" ]; then
 	mainscriptpid=$$
 	{
 		# On some systems, the sleep lives on, causing problems if somebody waits for the entire process tree to die.
-		trap "echo Kill received; kill $timeout_sleep_pid >/dev/null 2>/dev/null; ps aux | grep \$timeout_sleep_pid; kill done" EXIT
+		trap "echo Kill received; kill \$timeout_sleep_pid >/dev/null 2>/dev/null; ps aux | grep \$timeout_sleep_pid; echo kill done" EXIT
 		#debug on above
 		sleep "$TIMEOUT" &
 		timeout_sleep_pid=$!
