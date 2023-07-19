@@ -104,6 +104,7 @@ cleanup() {
 	# Kill timeout job if it still exists
 	if [ "$timeout_pid" != "" ]; then
 		# Ignore errors on kill
+		echo "Killing timeout" #debug
 		kill $timeout_pid >/dev/null 2>/dev/null
 	fi
 	# Subshell for each cleanup part to execute subsequent cleanups even if one part calls exit
@@ -174,7 +175,8 @@ if [ "$TIMEOUT" != "" ]; then
 	mainscriptpid=$$
 	{
 		# On some systems, the sleep lives on, causing problems if somebody waits for the entire process tree to die.
-		trap "kill $timeout_sleep_pid >/dev/null 2>/dev/null" EXIT
+		trap "echo Kill received; kill $timeout_sleep_pid >/dev/null 2>/dev/null; ps aux | grep $timeout_sleep_pid" EXIT
+		#debug on above
 		sleep "$TIMEOUT" &
 		timeout_sleep_pid=$!
 		# Only send signal if the sleep succeeded, because when pressing Ctrl+C,
