@@ -56,13 +56,17 @@ logging() {
 }
 
 logmeta() {
-	logging_out_no_procsubst "META" echo "$@" >&2
+	logging_out_no_procsubst "META" echo "$@"
+}
+
+errmeta() {
+	logmeta "$@" >&2
 }
 
 error_and_exit() {
 	exit_code=$1
 	shift
-	logmeta "$@"
+	errmeta "$@"
 	exit $exit_code
 }
 
@@ -190,7 +194,7 @@ student_container_name=$(logging_err_only "STUD START" docker run \
 		bash -c 'while true; do sleep 10; done') \
 || {
 	exit_code=$?
-	logmeta "Starting student container failed with $exit_code"
+	errmeta "Starting student container failed with $exit_code"
 
 	# Still try to stop it in case it was started even if docker run reported an error. Probably fails, so don't exit on errors there.
 	logging "STUD REMOVE" docker rm -f "$student_container_name" >/dev/null 2>/dev/null \
@@ -228,7 +232,7 @@ exercise_container_name=$(logging_err_only "EXER START" docker run \
 		bash -c 'while true; do sleep 10; done') \
 || {
 	exit_code=$?
-	logmeta "Starting exercise container failed with $exit_code"
+	errmeta "Starting exercise container failed with $exit_code"
 
 	# Still try to stop it in case it was started even if docker run reported an error. Probably fails, so don't fail on errors there.
 	docker rm -f "$exercise_container_name" >/dev/null 2>/dev/null \
