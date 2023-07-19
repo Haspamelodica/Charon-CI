@@ -105,6 +105,9 @@ cleanup() {
 	if [ "$timeout_pid" != "" ]; then
 		# Ignore errors on kill
 		kill $timeout_pid >/dev/null 2>/dev/null
+		logmeta "Killed timeout process, pid $timeout_pid" #TODO debug
+		sleep .5 #TODO debug
+		ps aux | grep $timeout_pid #TODO debug
 	fi
 	# Subshell for each cleanup part to execute subsequent cleanups even if one part calls exit
 	cleanup_exit_code=0
