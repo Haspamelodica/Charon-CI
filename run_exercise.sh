@@ -103,8 +103,9 @@ cleanup_exercise_container() {
 cleanup() {
 	# Kill timeout job if it still exists
 	if [ "$timeout_pid" != "" ]; then
+		# SIGTERM seems to not be enough on some systems.
 		# Ignore errors on kill
-		kill $timeout_pid >/dev/null 2>/dev/null
+		kill -SIGKILL $timeout_pid >/dev/null 2>/dev/null
 	fi
 	# Subshell for each cleanup part to execute subsequent cleanups even if one part calls exit
 	cleanup_exit_code=0
