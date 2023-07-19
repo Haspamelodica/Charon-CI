@@ -103,9 +103,8 @@ cleanup_exercise_container() {
 cleanup() {
 	# Kill timeout job if it still exists
 	if [ "$timeout_pid" != "" ]; then
-		# SIGTERM seems to not be enough on some systems.
 		# Ignore errors on kill
-		kill -SIGKILL $timeout_pid >/dev/null 2>/dev/null
+		kill $timeout_pid >/dev/null 2>/dev/null
 	fi
 	# Subshell for each cleanup part to execute subsequent cleanups even if one part calls exit
 	cleanup_exit_code=0
@@ -163,6 +162,7 @@ if [ "$TIMEOUT" != "" ]; then
 				logging_err_only "TIMEOUT STUD" docker kill $student_container_name >/dev/null
 			fi
 			logmeta "Giving exercise side time to clean up..."
+			# TODO switch to wait
 			sleep "$TIMEOUT_EXER_EXTRA"
 		fi
 		# No need to remove containers; that will be done by the cleanup functions.
@@ -173,9 +173,13 @@ if [ "$TIMEOUT" != "" ]; then
 
 	mainscriptpid=$$
 	{
+		# On some systems, the sleep lives on, causing problems if somebody waits for the entire process tree to die.
+		trap "kill $timeout_sleep_pid >/dev/null 2>/dev/null" EXIT
+		sleep "$TIMEOUT" &
+		timeout_sleep_pid=$!
 		# Only send signal if the sleep succeeded, because when pressing Ctrl+C,
 		# this sleep will be interrupted as well, but then we don't want to cause a timeout.
-		sleep "$TIMEOUT" &&
+		wait $timeout_sleep_pid &&
 		kill -SIGUSR1 $mainscriptpid
 	} &
 	timeout_pid=$!
