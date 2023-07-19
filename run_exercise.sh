@@ -108,6 +108,7 @@ cleanup() {
 		logmeta "Killed timeout process, pid $timeout_pid" #TODO debug
 		sleep .5 #TODO debug
 		ps aux | grep $timeout_pid #TODO debug
+		pstree $$
 	fi
 	# Subshell for each cleanup part to execute subsequent cleanups even if one part calls exit
 	cleanup_exit_code=0
