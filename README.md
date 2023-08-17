@@ -1,5 +1,5 @@
 # Charon for CI
-This repository makes using [Charon](https://github.com/Haspamelodica/Charon) easier for CI systems.
+This repository makes using [Charon](https://github.com/Haspamelodica/Charon) in CI systems easier.
 
 It requires two repositories to be cloned into subfolders by the CI system;
 the "student submission" repository containing all files submitted by the student,
@@ -29,7 +29,7 @@ Charon-CI uses Docker images built by https://github.com/Haspamelodica/Charon-CI
 - There must be a POM file (for Maven-based tests) or Gradle build files (for Gradle-based tests) at the repository root.
   The tests repository may use any dependencies and plugins, but using
   `org.apache.maven.plugins:maven-surefire-plugin:3.0.0` and `org.junit.jupiter:junit-jupiter-engine:5.8.2`
-  is recommended because those two artifacts and all their dependencies are cached in the exercise container.
+  is recommended because those two artifacts and all their dependencies are cached in the exercise base image.
 
 ## Recommended pipeline for testing student submissions
 1. Clone / check out this repository.
@@ -50,11 +50,19 @@ Charon-CI uses Docker images built by https://github.com/Haspamelodica/Charon-CI
 ## Configuring
 - You can specify additional arguments for Docker using the environment variables
   `$ADDITIONAL_DOCKER_ARGS_STUDENT` and `$ADDITIONAL_DOCKER_ARGS_EXERCISE`.
-- You can give a timeout using `$TIMEOUT`.
+  These will be given as arguments to the `docker run` command starting the student and exercise container, respectively.
+- You can specify a timeout using `$TIMEOUT`, in seconds.
+  This will be used as the argument to `sleep`, so depending on your system, you can use fractional seconds here.
+  Also, you can use `$TIMEOUT_EXER_EXTRA` to specify an additional time to sleep
+  after the student container is killed, but before the exercise container is killed,
+  to give the tests some time to clean up.
+  Note that this additional time should not be too large, as currently,
+  Charon-CI sleeps for the full `$TIMEOUT_EXER_EXTRA` even if the exercise container exits sooner.
 - You can add one source directory to include in the student side using `$STUDENT_SIDE_SOURCES`.
   Note that this effectively publishes these source files to students!
-  Also, remember that you can't trust anything on the student side, including these source files!
-  They might be overridden by malicious students.
+  Also, remember that you can't trust anything on the student side,
+  including your own code loaded in the student JVM using this mechanism!
+  This is because students can override all classes in the student JVM.
 
 ## Limitations
 - (The student submisison can not create any files outside of its Docker container.
