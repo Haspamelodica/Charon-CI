@@ -22,7 +22,7 @@ Charon-CI uses Docker images built by https://github.com/Haspamelodica/Charon-CI
 - Docker CLI
 - `bash`
 - `sed`
-- Some coreutils; specifically, `mkdir`, `chmod`, `kill`, `printf`
+- Some coreutils; specifically, `mkdir`, `chmod`, `kill`, `printf`, `rm`, `cp`, `mkfifo`
 - If a timeout is used, also the coreutil `sleep`
 
 ### Student submissions repository
