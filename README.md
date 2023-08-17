@@ -18,8 +18,12 @@ Charon-CI uses Docker images built by https://github.com/Haspamelodica/Charon-CI
 
 ## Requirements
 
-### Build environment
-- The build environment must have Docker preinstalled.
+### Dependencies in the build environment
+- Docker CLI
+- `bash`
+- `sed`
+- Some coreutils; specifically, `mkdir`, `chmod`, `kill`, `printf`
+- If a timeout is used, also the coreutil `sleep`
 
 ### Student submissions repository
 - All sources must be in one folder called `src` at repository root.
